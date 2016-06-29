@@ -2,10 +2,10 @@
 
 set -e
 
-VERSION=`cat quotes-version/number`
+VERSION=`cat version/number`
 
-pushd quotes-service
+pushd quotes
   ./gradlew -PversionNumber=$VERSION clean assemble
 popd
 
-cp quotes-service/build/libs/quotes-$VERSION.jar build/.
+cp quotes/build/libs/quotes-$VERSION.jar build/.
