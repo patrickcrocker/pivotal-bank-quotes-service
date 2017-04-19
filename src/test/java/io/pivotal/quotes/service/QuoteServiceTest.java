@@ -1,18 +1,12 @@
 package io.pivotal.quotes.service;
 
+import static org.hamcrest.Matchers.isA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-
-import io.pivotal.quotes.QuotesApplication;
-import io.pivotal.quotes.configuration.TestConfiguration;
-import io.pivotal.quotes.domain.CompanyInfo;
-import io.pivotal.quotes.domain.Quote;
-import io.pivotal.quotes.exception.SymbolNotFoundException;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -23,20 +17,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 
-import static org.hamcrest.Matchers.isA;
+import io.pivotal.quotes.configuration.TestConfiguration;
+import io.pivotal.quotes.domain.CompanyInfo;
+import io.pivotal.quotes.domain.Quote;
+import io.pivotal.quotes.exception.SymbolNotFoundException;
 
 /**
  * Tests the QuoteService.
@@ -51,8 +43,8 @@ import static org.hamcrest.Matchers.isA;
 //@WebAppConfiguration
 //@ContextConfiguration(initializers=ConfigFileApplicationContextInitializer.class)
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = QuotesApplication.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
 @TestPropertySource(locations="classpath:application-test.yml")
 @ActiveProfiles("test")
 public class QuoteServiceTest {
